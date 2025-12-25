@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Zort Dogde</title>
+<style>
+  body{
+    margin:0;
+    height:100vh;
+    background:#0F172A;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    font-family:Arial,sans-serif;
+  }
+  #btn{
+    position:absolute;
+    width:140px;height:50px;
+    border:none;border-radius:999px;
+    color:#E5E7EB;font-weight:900;letter-spacing:2px;
+    background:linear-gradient(135deg,#2563EB,#8A2BE2);
+    cursor:pointer;
+    box-shadow:0 0 25px rgba(138,43,226,.6);
+    transition:transform .12s;
+  }
+  #btn:hover{ transform:scale(1.08); }
+  .boom{
+    position:absolute;
+    font-size:24px;
+    animation:boom .6s ease-out forwards;
+    pointer-events:none;
+  }
+  @keyframes boom{
+    to{ transform:translate(var(--x),var(--y)) scale(0); opacity:0; }
+  }
+  b {
+    color: white;
+  }
+</style>
+</head>
+<body>
+<b>Sen Zortmen Değilsin</b>
+<button id="btn">Bu tuşa zortmenler basabilir</button>
+
+<script>
+const btn = document.getElementById("btn");
+
+// rastgele konuma kaç
+function runAway(){
+  const pad = 20;
+  const x = Math.random()*(innerWidth - btn.offsetWidth - pad*2) + pad;
+  const y = Math.random()*(innerHeight - btn.offsetHeight - pad*2) + pad;
+  btn.style.left = x+"px";
+  btn.style.top  = y+"px";
+}
+
+// fare yaklaşınca KAÇ
+document.addEventListener("mousemove", e=>{
+  const r = btn.getBoundingClientRect();
+  const dx = e.clientX - (r.left + r.width/2);
+  const dy = e.clientY - (r.top  + r.height/2);
+  const dist = Math.hypot(dx,dy);
+  if(dist < 120) runAway();
+});
+
+// YAKALARSAN 💥
+btn.addEventListener("click", ()=>{
+  btn.innerText = "BOOM!";
+  for(let i=0;i<24;i++){
+    const s=document.createElement("span");
+    s.className="boom";
+    s.textContent="💥";
+    s.style.left = btn.offsetLeft + btn.offsetWidth/2 + "px";
+    s.style.top  = btn.offsetTop  + btn.offsetHeight/2 + "px";
+    s.style.setProperty("--x",(Math.random()*300-150)+"px");
+    s.style.setProperty("--y",(Math.random()*300-150)+"px");
+    document.body.appendChild(s);
+    setTimeout(()=>s.remove(),600);
+  }
+  setTimeout(()=>{ btn.innerText="BAS"; runAway(); },700);
+});
+
+// ilk konum
+runAway();
+</script>
+</body>
+</html>

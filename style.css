@@ -1,0 +1,53 @@
+body {
+  margin: 0;
+  background: radial-gradient(circle, #120000, #000);
+  color: white;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 100px;
+  color: crimson;
+  text-shadow: 0 0 40px red;
+}
+
+.menu a {
+  display: block;
+  margin: 20px auto;
+  padding: 20px;
+  width: 300px;
+  background: linear-gradient(45deg, red, orange);
+  color: black;
+  font-size: 24px;
+  text-decoration: none;
+  border-radius: 12px;
+}
+
+.menu a:hover {
+  transform: scale(1.1);
+}
+
+.shake-btn {
+  margin-top: 50px;
+  padding: 25px 60px;
+  font-size: 28px;
+  background: black;
+  color: lime;
+  border: 3px solid lime;
+  cursor: pointer;
+}
+
+.shake {
+  animation: shake 0.1s infinite;
+}
+
+@keyframes shake {
+  0% {transform: translate(0,0);}
+  25% {transform: translate(10px,-10px);}
+  50% {transform: translate(-10px,10px);}
+  75% {transform: translate(10px,10px);}
+  100% {transform: translate(0,0);}
+}
+
+

@@ -1,0 +1,14 @@
+body {
+  background: black;
+  color: white;
+  text-align: center;
+  font-family: Impact;
+}
+
+button {
+  padding: 30px 60px;
+  font-size: 30px;
+  background: crimson;
+  border: none;
+  cursor: pointer;
+}
